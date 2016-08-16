@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="text-center">
+    <h1>Doses#new</h1>
+    <p>Find me in app/views/doses/new.html.erb</p>
+
+    <%= form_for [@cocktail, @dose], url: cocktail_dose_index_path(@cocktail) do |f| %>
+    <%= f.label :description %>
+    <%= f.text_field :description %>
+    <%= f.label :ingredient %>
+    <%= f.collection_select :ingredient_id, Ingredient.all, :id, :name %>
+    <%= f.submit 'Submit' %>
+    <% end %>
+
+    <p><%= link_to "Back", cocktail_path(@cocktail) %></p>
+  </div>
+</div>

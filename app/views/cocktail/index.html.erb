@@ -1,12 +1,25 @@
 <div class="container">
   <div class="text-center">
 
-    <% @cocktails.each do |cocktail| %>
-      cocktail.name
+    <% if @cocktails.empty? %>
+      <p>You have no Cocktails yet. Why not <%= link_to 'Add a new one', new_cocktail_path %> ?</p>
+    <% else %>
+      <div class="row">
+        <% @cocktails.each do |cocktail| %>
+          <div class="col-sm-8 col-sm-offset-2">
+            <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cloudinary_url cocktail.photos.first.path %>');">
+              <div class="card-category">Popular</div>
+              <div class="card-description">
+                <h2><%= link_to cocktail.name, cocktail_path(cocktail) %></h2>
+                <p><%= link_to 'Add dose', new_cocktail_dose_path(cocktail) %></p>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <div class="row">
+      <p><%= link_to 'Add new cocktail', new_cocktail_path %></p>
+      </div>
     <% end %>
-    <hr>
-
-    <%= link_to "Create New cocktail", new_cocktail_path %>
-
   </div>
 </div>

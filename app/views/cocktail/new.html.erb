@@ -2,9 +2,10 @@
   <div class="text-center">
     <h1>Create a new Cocktail !</h1>
 
-    <% form_for @cocktail do |f| %>
-      <%= f.text_field :name %>
-      <%= f.submit :submit %>
+    <%= simple_form_for @cocktail, :url => cocktail_index_path do |f| %>
+      <%= f.input :name %>
+      <%= f.input :photos, as: :attachinary %>
+      <%= f.button :submit %>
     <% end %>
   </div>
 </div>
